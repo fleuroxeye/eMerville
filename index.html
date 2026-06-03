@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eMerville Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ==========================================================================
+         1. AUTHENTICATION PORTAL (LOGIN / SIGNUP / VERIFY)
+         ========================================================================== -->
+    <section id="login-screen" class="split-viewport">
+        <!-- Left Side: Edge-to-Edge Hero Image Placement -->
+        <div class="hero-side" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('bg.jpg') center/cover no-repeat; padding: 50px 40px; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; color: #ffffff; box-sizing: border-box; min-height: 100vh;">
+            <div class="hero-overlay"></div>
+            <div class="hero-branding" style="position: relative; z-index: 2; margin-bottom: 20px; text-align: left;">
+                <div class="emerville-logo" style="font-size: 46px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 5px; color: #ffcc00;">eMerville</div>
+                <p style="font-size: 16px; opacity: 0.95; margin: 0; font-weight: 500;">Official Online Document Request System</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Panel Flow -->
+        <div class="portal-side">
+            <div class="portal-box">
+                <div class="brgy-logo-container">
+                    <img src="logo.png" alt="Barangay Merville Seal" style="width: 100px; height: 100px; object-fit: contain;">
+                </div>
+
+                <h2>Mabuhay, Parañaqueños!</h2>
+                
+                <!-- Login Module -->
+                <div id="auth-login" class="auth-sub-screen">
+                    <p class="portal-instruction">Please log in to your account to proceed.</p>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" placeholder="jennierubyjane@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                                <i class="fa-solid fa-eye toggle-password-eye" onclick="togglePasswordVisibility()" style="cursor: pointer;"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-utilities">
+                            <label class="checkbox-label">
+                                <input type="checkbox"> Remember me
+                            </label>
+                            <a href="#" class="auth-link" onclick="switchAuthScreen('auth-forgot')">Forgot Password?</a>
+                        </div>
+
+                        <button type="submit" class="btn-primary-auth">LOG IN</button>
+                    </form>
+                    <p class="switch-auth-text">Don't have an account yet? <a href="#" onclick="switchAuthScreen('auth-signup')">Create here</a>.</p>
+                </div>
+
+                <!-- Registration / Signup Module -->
+                <div id="auth-signup" class="auth-sub-screen hidden">
+                    <p class="portal-instruction">Create your account to request documents online.</p>
+                    <form onsubmit="handleSignUp(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Kim" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" placeholder="Jennie" required>
+                            </div>
+                            <div class="form-group size-mi">
+                                <label for="middleInitial">M.I.</label>
+                                <input type="text" id="middleInitial" placeholder="R" maxlength="2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <div class="dob-dropdown-row">
+                                <select id="dob-month" required>
+                                    <option value="">Birth Month</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                                <select id="dob-day" required>
+                                    <option value="">Birth Day</option>
+                                </select>
+                                <select id="dob-year" required>
+                                    <option value="">Birth Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Complete Address</label>
+                            <input type="text" id="address" placeholder="123 Sitio Tuyuan, Merville, Parañaque City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpEmail">Email Address</label>
+                            <input type="email" id="signUpEmail" placeholder="jennierubyjane@email.com" required>
+                        </div>
+                        <div class="form-group">
+                             <label for="signUpPassword">Password</label>
+                             <div class="password-wrapper">
+                                 <input type="password" id="signUpPassword" placeholder="Minimum 8 characters" required>
+                                 <i class="fa-solid fa-eye toggle-password-eye-signup" onclick="toggleSignUpPasswordVisibility()" style="cursor: pointer;"></i>
+                             </div>
+                        </div>
+                        <button type="button" class="btn-primary-auth" onclick="handleSignUp(event)">REGISTER ACCOUNT</button>
+                    </form>
+                    <p class="switch-auth-text">Already have an account? <a href="#" onclick="switchAuthScreen('auth-login')">Log in here</a>.</p>
+                </div>
+
+                <!-- Forgot Password Recovery -->
+                <div id="auth-forgot" class="auth-sub-screen hidden">
+                    <p class="portal-instruction">Enter your registered email address to receive a recovery code.</p>
+                    <form onsubmit="handleForgotPassword(event)">
+                        <div class="form-group">
+                            <label for="forgotEmail">Email Address</label>
+                            <input type="email" id="forgotEmail" placeholder="jennierubyjane@email.com" required>
+                        </div>
+                        <button type="button" class="btn-primary-auth" onclick="handleForgotPassword(event)">SEND CODE</button>
+                    </form>
+                    <p class="switch-auth-text"><a href="#" onclick="switchAuthScreen('auth-login')">&larr; Back to Log In</a></p>
+                </div>
+
+                <!-- OTP Verification Screen -->
+                <div id="auth-verify" class="auth-sub-screen hidden">
+                    <p class="portal-instruction">A temporary verification code was sent to your email.</p>
+                    <form onsubmit="handleVerification(event)">
+                        <div class="form-group">
+                            <label for="verifyCode">Enter 6-Digit Code</label>
+                            <input type="text" id="verifyCode" placeholder="000000" maxlength="6" required style="text-align: center; font-size: 20px; letter-spacing: 4px;">
+                        </div>
+                        <button type="submit" class="btn-primary-auth">VERIFY CODE</button>
+                    </form>
+                </div>
+
+                <p class="portal-footer" style="font-size: 11px; color: #909399; margin-top: 25px; line-height: 1.4;">
+                    By using this service, you understand and agree to the eMerville Portal <a href="#">Terms of Use</a> and <a href="#">Privacy Statement</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         2. MAIN WORKSPACE DASHBOARD MODULE (HIDDEN BY DEFAULT)
+         ========================================================================== -->
+    <div id="main-app" class="hidden">
+        
+        <!-- Header Navigation Controls (Sticky Top) -->
+        <header class="app-header" style="background: #ffffff; border-bottom: 3px solid #ffcc00; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-sizing: border-box;">
+            <div class="header-brand" style="display: flex; align-items: center; gap: 12px;">
+                <img src="logo.png" alt="Barangay Merville Seal" class="header-logo" style="width: 45px; height: 45px; object-fit: contain;">
+                <span class="header-title" style="font-size: 22px; font-weight: 700; color: #112a1f;">eMerville</span>
+            </div>
+
+            <nav class="header-tabs" style="display: flex; gap: 10px;">
+                <button class="tab-btn active" onclick="showScreen('dashboard-screen')">Home</button>
+                <button class="tab-btn" onclick="showScreen('request-screen')">Request Document</button>
+                <button class="tab-btn" onclick="showScreen('tracking-screen')">Track Request</button>
+                <button class="tab-btn" onclick="showScreen('blotter-screen')">Blotter Report</button>
+            </nav>
+
+            <div class="header-profile-container" style="position: relative;">
+                <div class="profile-trigger" onclick="toggleProfileDropdown(event)" style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                    <i class="fas fa-user-circle" style="font-size: 24px; color: #2e7559;"></i>
+                    <span class="chevron-down-icon">▼</span>
+                </div>
+
+                <div id="profileMenu" class="profile-dropdown-menu hidden" style="position: absolute; right: 0; top: 35px; background: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 10px 0; width: 160px; text-align: left; z-index: 1000;">
+                    <a href="#" onclick="handleMenuOption('Edit Profile', event)" padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px;">
+                        <i class="fa-solid fa-user-gear" style="margin-right: 8px; color: #606266;"></i> Edit Profile
+                    </a>
+                    <a href="#" onclick="handleMenuOption('Settings', event)"  padding: 10px 15px; color: #333; text-decoration: none; font-size: 14px;">
+                        <i class="fa-solid fa-gear" style="margin-right: 8px; color: #606266;"></i> Settings
+                    </a>
+                    <hr class="dropdown-divider" style="margin: 5px 0; border: 0; border-top: 1px solid #e6e9f0;">
+                    <a href="#" onclick="handleLogout()" class="logout-link"  padding: 10px 15px; color: #d9534f; text-decoration: none; font-size: 14px; font-weight: 600;">
+                        <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px; color: #d9534f;"></i> Log Out
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- SCREEN A: HOME / DASHBOARD SCREEN -->
+        <section id="dashboard-screen" class="screen">
+            
+            <!-- Edge-to-Edge Full Screen Hero Card Banner Section (Walang Width Harang) -->
+            <div style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; box-sizing: border-box; overflow: hidden; margin-top: -20px;">
+                <div class="hero-section" style="background: linear-gradient(rgba(17, 42, 31, 0.55), rgba(17, 42, 31, 0.55)), url('merville_header.jpg') center/cover no-repeat; padding: 75px 40px 45px 40px; text-align: center; color: #ffffff; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; box-sizing: border-box; gap: 35px;">
+                    
+                    <!-- Main Core Title Branding Header Block -->
+                    <div style="text-align: center;">
+                        <h1 style="font-size: 45px; font-weight: 700; margin: 0 0 14px 0; line-height: 1.2; letter-spacing: -0.5px;">Welcome to eMerville: Barangay<br>Merville Online Services</h1>
+                        <p style="font-size: 16px; opacity: 0.9; margin: 0; font-weight: 400;">Official Portal Serving the Residents of Barangay Merville</p>
+                    </div>
+                    
+                    <!-- Action Row Triggers Setup (Saktong White & Transparent Outline Buttons) -->
+                    <div style="display: flex; justify-content: center; gap: 15px; align-items: center;">
+                        <button onclick="showScreen('request-screen')" class="btn-hero-req" style="background-color: #ffffff; color: #1e5631; border: none; padding: 14px 26px; font-size: 15px; font-weight: 600; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; outline: none;"><i class="fa-solid fa-file-circle-check"></i> Request a Document</button>
+                        <button onclick="showScreen('tracking-screen')" class="btn-hero-track" style="background-color: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.8); padding: 14px 26px; font-size: 15px; font-weight: 600; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px; outline: none;"><i class="fa-solid fa-magnifying-glass"></i> Track Request</button>
+                    </div>
+
+                    <!-- Three Glassmorphism UI Badges Metrics Horizontal Row -->
+                    <div style="width: 100%; max-width: 1200px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; box-sizing: border-box; margin-top: 10px;">
+                        <!-- Glass Badge 1 -->
+                        <div style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 25px 30px; border-radius: 14px; display: flex; align-items: center; gap: 18px; color: #ffffff; box-sizing: border-box;">
+                            <div style="color: #f5a623; font-size: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-file-invoice"></i></div>
+                            <div style="text-align: left;"><h3 style="margin: 0 0 2px 0; font-size: 24px; font-weight: 700; line-height: 1.1;">4</h3><p style="margin: 0; font-size: 13.5px; opacity: 0.8; font-weight: 500;">Available Documents</p></div>
+                        </div>
+                        <!-- Glass Badge 2 -->
+                        <div style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 25px 30px; border-radius: 14px; display: flex; align-items: center; gap: 18px; color: #ffffff; box-sizing: border-box;">
+                            <div style="color: #f5a623; font-size: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-business-time"></i></div>
+                            <div style="text-align: left;"><h3 style="margin: 0 0 2px 0; font-size: 24px; font-weight: 700; line-height: 1.1;">1-2 Days</h3><p style="margin: 0; font-size: 13.5px; opacity: 0.8; font-weight: 500;">Avg. Processing Time</p></div>
+                        </div>
+                        <!-- Glass Badge 3 -->
+                        <div style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 25px 30px; border-radius: 14px; display: flex; align-items: center; gap: 18px; color: #ffffff; box-sizing: border-box;">
+                            <div style="color: #f5a623; font-size: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fa-solid fa-globe"></i></div>
+                            <div style="text-align: left;"><h3 style="margin: 0 0 2px 0; font-size: 24px; font-weight: 700; line-height: 1.1;">Fully Online</h3><p style="margin: 0; font-size: 13.5px; opacity: 0.8; font-weight: 500;">24/7 Service Portal</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Horizontal Timeline Framework Row (How It Works) -->
+                    <div style="width: 100%; max-width: 1200px; background: rgba(0, 0, 0, 0.22); border-radius: 12px; padding: 20px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; margin-top: 10px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #f5a623; text-align: left;">How It Works</div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; color: #ffffff; width: 100%;">
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600;"><i class="fa-regular fa-pen-to-square" style="color: #f5a623;"></i> Request</div>
+                            <div style="opacity: 0.4; font-size: 12px;">&gt;</div>
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600;"><i class="fa-solid fa-magnifying-glass" style="color: #f5a623;"></i> Review</div>
+                            <div style="opacity: 0.4; font-size: 12px;">&gt;</div>
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600;"><i class="fa-regular fa-circle-check" style="color: #f5a623;"></i> Approval</div>
+                            <div style="opacity: 0.4; font-size: 12px;">&gt;</div>
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600;"><i class="fa-solid fa-box-archive" style="color: #f5a623;"></i> Pickup</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Main Layout Restricting Content Container Wrapper -->
+            <main class="container" style="max-width: 1200px; width: 90%; margin: 40px auto; padding: 0; box-sizing: border-box;">
+                
+                <div style="text-align: left; margin-bottom: 30px;">
+                    <div class="documents-marketplace-section" style="background-color: #112a1f; padding: 60px 40px; margin-top: 40px; border-radius: 12px; box-sizing: border-box; text-align: left;">
+            
+            <div style="margin-bottom: 40px;">
+                <h2 style="font-size: 28px; font-weight: 700; color: #ffffff; margin: 0 0 8px 0; font-family: sans-serif;">Select a Document to Request</h2>
+                <p class="subtitle" style="color: #a3b8ad; margin: 0; font-size: 14.5px; font-family: sans-serif;">Skip the lines at the Barangay Hall. Select an option below and secure the layout profiles.</p>
+            </div>
+
+            <!-- 3 Columns Row Layout Grid Matrix (Saktong gaya ng image_8f2af8.jpg) -->
+            <div class="card-grid" style="display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; box-sizing: border-box !important;">
+                
+                <div class="card" onclick="openForm('Barangay Clearance')" style="background: #ffffff; border: none; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.15); box-sizing: border-box; min-height: 340px; text-align: left;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #1e5631;">
+                                <i class="fa-solid fa-file-shield" style="font-size: 18px;"></i>
+                                <h3 style="margin: 0; font-size: 17px; color: #112a1f; font-weight: 700;">Barangay Clearance</h3>
+                            </div>
+                            <span style="background-color: #fdf6ec; color: #e6a23c; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 1-2 Days</span>
+                        </div>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #606266; line-height: 1.5; font-family: sans-serif;">Required for employment, background checks, and general identification purposes.</p>
+                        
+                        <div style="background-color: #f8f9fa; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <span style="font-size: 12px; font-weight: 700; color: #303133; display: block; margin-bottom: 6px;">Requirements:</span>
+                            <ul style="margin: 0; padding-left: 16px; color: #606266; font-size: 12.5px; line-height: 1.5;">
+                                <li>Valid ID</li>
+                                <li>Proof of Residency</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background-color: #2e7559; color: #ffffff; border: none; padding: 11px; font-weight: 600; border-radius: 6px; cursor: pointer; font-size: 13.5px; box-sizing: border-box; text-align: center;">Start Request &rarr;</button>
+                </div>
+
+                <div class="card" onclick="openForm('Certificate of Indigency')" style="background: #ffffff; border: none; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.15); box-sizing: border-box; min-height: 340px; text-align: left;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #1e5631;">
+                                <i class="fa-solid fa-hand-holding-hand" style="font-size: 18px;"></i>
+                                <h3 style="margin: 0; font-size: 17px; color: #112a1f; font-weight: 700;">Certificate of Indigency</h3>
+                            </div>
+                            <span style="background-color: #fdf6ec; color: #e6a23c; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 1 Day</span>
+                        </div>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #606266; line-height: 1.5; font-family: sans-serif;">For financial assistance, educational scholarships, or medical subsidy applications.</p>
+                        
+                        <div style="background-color: #f8f9fa; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <span style="font-size: 12px; font-weight: 700; color: #303133; display: block; margin-bottom: 6px;">Requirements:</span>
+                            <ul style="margin: 0; padding-left: 16px; color: #606266; font-size: 12.5px; line-height: 1.5;">
+                                <li>Voter's ID / Certification</li>
+                                <li>No Income Certificate</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background-color: #2e7559; color: #ffffff; border: none; padding: 11px; font-weight: 600; border-radius: 6px; cursor: pointer; font-size: 13.5px; box-sizing: border-box; text-align: center;">Start Request &rarr;</button>
+                </div>
+
+                <div class="card" onclick="openForm('Certificate of Residency')" style="background: #ffffff; border: none; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.15); box-sizing: border-box; min-height: 340px; text-align: left;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #1e5631;">
+                                <i class="fa-solid fa-house-user" style="font-size: 18px;"></i>
+                                <h3 style="margin: 0; font-size: 17px; color: #112a1f; font-weight: 700;">Certificate of Residency</h3>
+                            </div>
+                            <span style="background-color: #fdf6ec; color: #e6a23c; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 1-2 Days</span>
+                        </div>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #606266; line-height: 1.5; font-family: sans-serif;">Official proof that you are an active and registered resident of Barangay Merville.</p>
+                        
+                        <div style="background-color: #f8f9fa; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <span style="font-size: 12px; font-weight: 700; color: #303133; display: block; margin-bottom: 6px;">Requirements:</span>
+                            <ul style="margin: 0; padding-left: 16px; color: #606266; font-size: 12.5px; line-height: 1.5;">
+                                <li>Latest Cedula (2026)</li>
+                                <li>Any Utility Bill</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background-color: #2e7559; color: #ffffff; border: none; padding: 11px; font-weight: 600; border-radius: 6px; cursor: pointer; font-size: 13.5px; box-sizing: border-box; text-align: center;">Start Request &rarr;</button>
+                </div>
+
+                <div class="card" onclick="openForm('Business Permit')" style="background: #ffffff; border: none; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.15); box-sizing: border-box; min-height: 340px; text-align: left;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #1e5631;">
+                                <i class="fa-solid fa-shop" style="font-size: 18px;"></i>
+                                <h3 style="margin: 0; font-size: 17px; color: #112a1f; font-weight: 700;">Business Permit</h3>
+                            </div>
+                            <span style="background-color: #fdf6ec; color: #e6a23c; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 2-3 Days</span>
+                        </div>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #606266; line-height: 1.5; font-family: sans-serif;">Required clearance for operating small businesses or commercial shops within Merville.</p>
+                        
+                        <div style="background-color: #f8f9fa; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <span style="font-size: 12px; font-weight: 700; color: #303133; display: block; margin-bottom: 6px;">Requirements:</span>
+                            <ul style="margin: 0; padding-left: 16px; color: #606266; font-size: 12.5px; line-height: 1.5;">
+                                <li>DTI/SEC Registration</li>
+                                <li>Lease Contract</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background-color: #2e7559; color: #ffffff; border: none; padding: 11px; font-weight: 600; border-radius: 6px; cursor: pointer; font-size: 13.5px; box-sizing: border-box; text-align: center;">Start Request &rarr;</button>
+                </div>
+
+                <div class="card" onclick="openForm('Cedula')" style="background: #ffffff; border: none; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.15); box-sizing: border-box; min-height: 340px; text-align: left;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #1e5631;">
+                                <i class="fa-solid fa-address-card" style="font-size: 18px;"></i>
+                                <h3 style="margin: 0; font-size: 17px; color: #112a1f; font-weight: 700;">Cedula (CTC)</h3>
+                            </div>
+                            <span style="background-color: #fdf6ec; color: #e6a23c; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 1 Day</span>
+                        </div>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #606266; line-height: 1.5; font-family: sans-serif;">Community Tax Certificate processed layout required for bank accounts and legal claims.</p>
+                        
+                        <div style="background-color: #f8f9fa; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <span style="font-size: 12px; font-weight: 700; color: #303133; display: block; margin-bottom: 6px;">Requirements:</span>
+                            <ul style="margin: 0; padding-left: 16px; color: #606266; font-size: 12.5px; line-height: 1.5;">
+                                <li>Valid Government ID</li>
+                                <li>Proof of Income Status</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background-color: #2e7559; color: #ffffff; border: none; padding: 11px; font-weight: 600; border-radius: 6px; cursor: pointer; font-size: 13.5px; box-sizing: border-box; text-align: center;">Start Request &rarr;</button>
+                </div>
+
+                <div class="card" onclick="openForm('Barangay ID')" style="background: #ffffff; border: none; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.15); box-sizing: border-box; min-height: 340px; text-align: left;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #1e5631;">
+                                <i class="fa-solid fa-id-card" style="font-size: 18px;"></i>
+                                <h3 style="margin: 0; font-size: 17px; color: #112a1f; font-weight: 700;">Barangay ID Card</h3>
+                            </div>
+                            <span style="background-color: #fdf6ec; color: #e6a23c; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 20px; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 2-3 Days</span>
+                        </div>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #606266; line-height: 1.5; font-family: sans-serif;">Official residential verification identification card issued for secure portal updates.</p>
+                        
+                        <div style="background-color: #f8f9fa; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
+                            <span style="font-size: 12px; font-weight: 700; color: #303133; display: block; margin-bottom: 6px;">Requirements:</span>
+                            <ul style="margin: 0; padding-left: 16px; color: #606266; font-size: 12.5px; line-height: 1.5;">
+                                <li>2 Government Valid IDs</li>
+                                <li>Barangay Clearance Record</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background-color: #2e7559; color: #ffffff; border: none; padding: 11px; font-weight: 600; border-radius: 6px; cursor: pointer; font-size: 13.5px; box-sizing: border-box; text-align: center;">Start Request &rarr;</button>
+                </div>
+
+            </div>
+
+            </div>
+                <!-- Comprehensive Social Media Windows Link Grid -->
+<div class="social-media-block-section" style="background-color: #f9f9f9; width: 100%; padding: 60px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; width: 90%; text-align: center;">
+        <h2 style="margin: 0 0 40px 0; font-size: 32px; font-weight: 700; color: #112a1f;">Social Media Windows</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; justify-items: center;">
+            
+            <a href="https://www.facebook.com/share/g/1BdxZATpm2/" target="_blank" class="socmed-window-card" style="display: inline-block; position: relative; width: 250px; height: 280px; border-radius: 12px; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-decoration: none;" onmouseover="this.style.transform='translateY(-12px) scale(1.02)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.08)';" style="box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                <img src="first_socmed.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);"></div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 10px; color: white; font-weight: bold; font-size: 18px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Barangay FB Group Page</div>
+            </a>
+
+            <a href="https://www.facebook.com/mervillehealthcenter" target="_blank" class="socmed-window-card" style="display: inline-block; position: relative; width: 250px; height: 280px; border-radius: 12px; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-decoration: none;" onmouseover="this.style.transform='translateY(-12px) scale(1.02)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.08)';" style="box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                <img src="second_socmed.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);"></div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 10px; color: white; font-weight: bold; font-size: 18px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Barangay Medical FB Page</div>
+            </a>
+
+            <a href="https://www.facebook.com/SKMerville" target="_blank" class="socmed-window-card" style="display: inline-block; position: relative; width: 250px; height: 280px; border-radius: 12px; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-decoration: none;" onmouseover="this.style.transform='translateY(-12px) scale(1.02)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.08)';" style="box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                <img src="third_socmed.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);"></div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 10px; color: white; font-weight: bold; font-size: 18px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">SK Facebook</div>
+            </a>
+
+            <a href="https://www.instagram.com/skmerville/" target="_blank" class="socmed-window-card" style="display: inline-block; position: relative; width: 250px; height: 280px; border-radius: 12px; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-decoration: none;" onmouseover="this.style.transform='translateY(-12px) scale(1.02)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.08)';" style="box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                <img src="fourth_socmed.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);"></div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 10px; color: white; font-weight: bold; font-size: 18px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">SK Instagram</div>
+            </a>
+
+        </div>
+    </div>
+</div>
+                
+            </section>
+
+            <!-- VIEWPORT 2: ONLINE BLOTTER REGISTRY Form -->
+            <section id="blotter-screen" class="screen" style="display: none; max-width: 650px; margin: 40px auto; padding: 0 20px; text-align: left;">
+                <h2 style="font-size: 24px; font-weight: 700; color: #2e7559; margin-bottom: 6px;">File an Online Blotter / Incident Report</h2>
+                <p class="subtitle" style="font-size: 14px; color: #606266; margin-top: 0; margin-bottom: 24px;">Report localized issues securely. All submissions are sent directly to the Barangay Desk.</p>
+                
+                <div class="blotter-card-container" style="display: block !important; background: #ffffff !important; border: 1px solid #e6e9f0 !important; border-radius: 8px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important; padding: 30px !important; box-sizing: border-box !important; width: 100% !important;">
+                    <form id="blotterForm" onsubmit="handleBlotterSubmit(event)" style="display: block !important; width: 100% !important;">
+                        <div class="util-form-group" style="display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; margin-bottom: 20px !important; width: 100% !important;">
+                            <label style="font-size: 14px; font-weight: 600; color: #303133; display: block;">Incident Type / Category</label>
+                            <select required style="width: 100% !important; padding: 12px 14px !important; border: 1px solid #dcdfe6 !important; border-radius: 6px !important; font-size: 14px !important; background-color: #ffffff !important; box-sizing: border-box !important;">
+                                <option value="">Select Category...</option>
+                                <option value="noise">Noise Complaint (Videoke / Disturbance)</option>
+                                <option value="traffic">Illegal Parking / Street Obstruction</option>
+                                <option value="security">Theft / General Security Concern</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <div class="util-form-group" style="display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; margin-bottom: 20px !important; width: 100% !important;">
+                            <label style="font-size: 14px; font-weight: 600; color: #303133; display: block;">Incident Location / Street Name</label>
+                            <input type="text" placeholder="e.g., 123 Sitio Tuyuan, Merville, Parañaque City" required style="width: 100% !important; padding: 12px 14px !important; border: 1px solid #dcdfe6 !important; border-radius: 6px !important; font-size: 14px !important; background-color: #ffffff !important; box-sizing: border-box !important;">
+                        </div>
+                        <div class="util-form-group" style="display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; margin-bottom: 20px !important; width: 100% !important;">
+                            <label style="font-size: 14px; font-weight: 600; color: #303133; display: block;">Narrative Details</label>
+                            <textarea rows="5" placeholder="Provide a detailed description of the incident..." required style="width: 100% !important; padding: 12px 14px !important; border: 1px solid #dcdfe6 !important; border-radius: 6px !important; font-size: 14px !important; background-color: #ffffff !important; font-family: inherit !important; box-sizing: border-box !important; resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="submit-blotter-btn" style="width: 100% !important; background-color: #2e7559 !important; color: #ffffff !important; border: none !important; padding: 14px !important; font-size: 15px !important; font-weight: 600 !important; border-radius: 6px !important; cursor: pointer !important; margin-top: 8px !important; box-sizing: border-box !important;">Submit Report to Desk</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- VIEWPORT 3: DYNAMIC APPLICATION STATUS TRACKER -->
+<section id="tracking-screen" class="screen" style="display: none; max-width: 650px; margin: 40px auto; padding: 0 20px; text-align: left;">
+    <h2 style="font-size: 24px; font-weight: 700; color: #2e7559; margin-bottom: 6px;">Track Request Status</h2>
+    <p class="subtitle" style="font-size: 14px; color: #606266; margin-top: 0; margin-bottom: 24px;">Monitor the real-time processing status of your submitted document applications.</p>
+
+    <div class="tracking-card-container" style="max-width: 600px; margin: 40px auto; padding: 0 20px;">
+        
+        <div class="empty-state-card" style="background: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee;">
+            <h3 style="color: #333; margin-top: 0;">No requests found</h3>
+            <p style="color: #666; font-size: 14px; margin-bottom: 0;">Your submitted documents will appear here.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="request-screen" class="screen hidden" style="position: relative; max-width: 650px; margin: 40px auto; padding: 20px;">
+    
+
+    <h2 style="text-align: left; margin-bottom: 25px; color: #2e7559;">Application Form</h2>
+
+    <form id="requestForm" style="background: #ffffff; padding: 30px; border-radius: 12px; border: 1px solid #e4e7ed; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+        
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Full Name</label>
+            <input type="text" id="fullName" placeholder="Jennie Ruby Jane" style="width: 100%; padding: 12px; border: 1px solid #dcdfe6; border-radius: 6px;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: 600; margin-bottom: 8px;">Purok / Street Address</label>
+            <input type="text" id="reqAddress" placeholder="123 Sitio Tuyuan, Merville" style="width: 100%; padding: 12px; border: 1px solid #dcdfe6; border-radius: 6px;">
+        </div>
+
+        <label style="display: block; font-weight: 600; margin-bottom: 5px;">Upload Photocopy of Requirements</label>
+        <div id="upload-box" 
+            onclick="document.getElementById('requirementFile').click()" 
+            style="border: 2px dashed #dcdfe6; padding: 20px; text-align: center; cursor: pointer; border-radius: 8px; background: #f8f9fa; margin-bottom: 25px;"> <p id="file-text" style="margin: 0; font-size: 13px; color: #606266;">Click to upload or drag files here</p>
+        </div>
+
+        <input type="file" id="requirementFile" accept=".jpg, .pdf" style="display: none;">
+
+
+        <button type="button" onclick="submitRequest(event)" style="width: 100%; padding: 14px; background: #2e7559; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">
+            Submit Application
+        </button>
+    </form>
+</section>
+
+            <!-- VIEWPORT 5: APPLICATION COMPLETION SUCCESS SPLASH -->
+            <section id="success-screen" class="screen hidden" style="max-width: 500px; margin: 40px auto; padding: 30px; background: #ffffff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                <div style="font-size: 50px; color: #2e7559; margin-bottom: 15px;">✔</div>
+                <h2 style="color: #2e7559; margin-bottom: 10px; font-weight: 700;">Application Submitted!</h2>
+                <p style="color: #606266; margin-bottom: 25px;">Your request has been successfully recorded.</p>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 6px; text-align: left; margin-bottom: 30px; border: 1px dashed #dcdfe6;">
+                    <p style="margin-bottom: 8px; color: #303133;"><strong>Document:</strong> <span id="receipt-doc" style="color: #2e7559; font-weight: 600;"></span></p>
+                    <p style="margin: 0; color: #303133;"><strong>Tracking Number:</strong> <span id="receipt-track" style="font-family: monospace; font-size: 16px; color: #e6a23c; font-weight: bold;"></span></p>
+                </div>
+                <button type="button" onclick="showScreen('dashboard-screen')" 
+                        style="background-color: #f0f2f5; color: #4a4a4a; border: 1px solid #dcdfe6; padding: 10px 18px; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; transition: all 0.2s;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+                </button>
+            </section>
+
+        </main>
+
+        <!-- ==========================================================================
+             3. WEB PORTAL SHARED GLOBAL FOOTER SYSTEM
+             ========================================================================== -->
+        <footer class="app-footer" id="portal-footer" style="background: #112a1f; padding: 40px 20px; color: #ffffff; width: 100%; box-sizing: border-box;">
+    <div class="footer-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: left;">
+        
+        <!-- Contact Info -->
+        <div class="footer-col contact-info">
+            <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">eMerville Portal</h3>
+            <!-- Inayos ang alignment ng icon at text gamit ang flex -->
+            <p class="contact-item" style="margin: 8px 0; font-size: 13.5px; opacity: 0.9; display: flex; align-items: center;">
+                <span class="footer-icon" style="margin-right: 8px; width: 20px; text-align: center;">&#9742;</span> 123-456-7890
+            </p>
+            <p class="contact-item" style="margin: 8px 0; font-size: 13.5px; opacity: 0.9; display: flex; align-items: center;">
+                <span class="footer-icon" style="margin-right: 8px; width: 20px; text-align: center;">&#9993;</span> contact@emervilleportal.gov.ph
+            </p>
+            <p class="contact-item" style="margin: 8px 0; font-size: 13.5px; opacity: 0.9; display: flex; align-items: center;">
+                <span class="footer-icon" style="margin-right: 8px; width: 20px; text-align: center;"><i class="fa-solid fa-location-dot"></i></span> 3 Daly Road, Parañaque, 1709
+            </p>
+            <p class="contact-item" style="margin: 8px 0; font-size: 13.5px; opacity: 0.9; display: flex; align-items: center;">
+                <span class="footer-icon" style="margin-right: 8px; width: 20px; text-align: center;"><i class="fa-solid fa-clock"></i></span> Monday - Friday: 8:00 am - 5:00 pm
+            </p>
+        </div>
+
+        <!-- Links Columns (Pinantay ang taas gamit ang consistent padding/margin) -->
+        <div class="footer-col footer-links">
+            <h4 style="margin: 0 0 15px 0; color: #2e7559; font-size: 16px;">Home</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 2; font-size: 13.5px;">
+                <li><a href="#" onclick="showScreen('dashboard-screen'); return false;" style="color: #ffffff; text-decoration: none; opacity: 0.85;">About Us</a></li>
+                <li><a href="#" onclick="showScreen('dashboard-screen'); return false;" style="color: #ffffff; text-decoration: none; opacity: 0.85;">Services</a></li>
+                <li><a href="#" style="color: #ffffff; text-decoration: none; opacity: 0.85;">Document Types</a></li>
+                <li><a href="#" style="color: #ffffff; text-decoration: none; opacity: 0.85;">How it Works</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col footer-links">
+            <h4 style="margin: 0 0 15px 0; color: #2e7559; font-size: 16px;">Equipment</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 2; font-size: 13.5px;">
+                <li><a href="#" style="color: #ffffff; text-decoration: none; opacity: 0.85;">Service Area</a></li>
+                <li><a href="#" style="color: #ffffff; text-decoration: none; opacity: 0.85;">Why Us</a></li>
+                <li><a href="#" style="color: #ffffff; text-decoration: none; opacity: 0.85;">Gallery</a></li>
+                <li><a href="#" onclick="showScreen('blotter-screen'); return false;" style="color: #ffffff; text-decoration: none; opacity: 0.85;">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+    </div> <!-- APPS GLOBAL FRAME WORK ARCHITECTURE MAIN MODULE TERMINATION BLOCK -->
+
+<script src="script.js"></script>
+
+<section id="detailsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999999; justify-content: center; align-items: center; padding: 20px;">
+    
+    <div style="background: white; padding: 40px; border-radius: 12px; width: 100%; max-width: 500px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
+        <h2 style="color: #2e7559; margin-top: 0; font-size: 24px;">Barangay Clearance</h2>
+        <p style="margin-bottom: 25px;">Tracking ID: <span id="modalTrackId" style="background: #f4f4f5; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-weight: bold;"></span></p>
+
+        <div style="display: flex; flex-direction: column; gap: 15px; color: #303133; font-size: 15px;">
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #606266;">Status:</span>
+                <span id="modalStatus" style="font-weight: 600; color: #e6a23c;">Under Review (Step 2)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #606266;">Requested On:</span>
+                <span id="modalRequestedOn"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #606266;">Estimated Availability:</span>
+                <span id="modalEta"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #606266;">Purpose:</span>
+                <span id="modalPurpose"></span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #606266;">Pickup Location:</span>
+                <span>Barangay Hall Desk 1</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #606266;">Requirements Needed:</span>
+                <span style="background: #f4f4f5; padding: 2px 8px; border-radius: 4px; font-size: 13px;">Valid ID / Student ID</span>
+            </div>
+        </div>
+
+        <button type="button" 
+                onclick="this.parentElement.parentElement.style.display='none'; document.querySelector('.modal-overlay').style.display='none';" 
+                style="width: 100%; margin-top: 30px; padding: 12px; background: #2e7559; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;">
+            Close Details
+        </button>
+    </div>
+
+
+</section>
+
+</body>
+</html>
