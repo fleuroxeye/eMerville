@@ -20,12 +20,12 @@ function togglePasswordVisibility() {
     if (passwordInput && eyeIcon) {
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            // Pag ginawang text, pinapalitan natin ang fa-eye ng fa-eye-slash
+         
             eyeIcon.classList.add('fa-eye-slash');
             eyeIcon.classList.remove('fa-eye');
         } else {
             passwordInput.type = 'password';
-            // Pag ibinalik sa password, tinatanggal ang slash
+         
             eyeIcon.classList.add('fa-eye');
             eyeIcon.classList.remove('fa-eye-slash');
         }
@@ -39,12 +39,12 @@ function toggleSignUpPasswordVisibility() {
     if (signUpPasswordInput && eyeIconSignUp) {
         if (signUpPasswordInput.type === 'password') {
             signUpPasswordInput.type = 'text';
-            // Pag ginawang text, pinapalitan natin ang fa-eye ng fa-eye-slash
+         
             eyeIconSignUp.classList.add('fa-eye-slash');
             eyeIconSignUp.classList.remove('fa-eye');
         } else {
             signUpPasswordInput.type = 'password';
-            // Pag ibinalik sa password, tinatanggal ang slash
+        
             eyeIconSignUp.classList.add('fa-eye');
             eyeIconSignUp.classList.remove('fa-eye-slash');
         }
@@ -69,17 +69,14 @@ function handleLogin(event) {
 function handleSignUp(event) {
     event.preventDefault();
 
-    // 1. Kuhanin natin ang password input field at ang haba ng tinype ng user
     const signUpPassInput = document.getElementById('signUpPassword');
     const passwordValue = signUpPassInput ? signUpPassInput.value : '';
 
-    // 2. ETO YUNG HARANG: Kung mas mababa sa 8 characters, mag-a-alert at hihinto ang code
     if (passwordValue.length < 8) {
         alert("Password must be at least 8 characters long!");
-        return; // Mismong katapat ng "return;", puputulin ang function kaya HINDI lilipat ng screen.
+        return; 
     }
 
-    // 3. Kung 8 pataas ang tinype, dito na siya papasok sa dashboard (Normal process)
     alert("Account registered successfully!");
 
     const signUpIcon = document.querySelector('.toggle-password-eye-signup');
@@ -174,8 +171,8 @@ function submitRequest() {
     currentRequests.push(newRequest);
     localStorage.setItem('savedRequests', JSON.stringify(currentRequests));
 
-    renderTrackingList(); // Update list
-    showScreen('success-screen'); // Design is untouched
+    renderTrackingList(); 
+    showScreen('success-screen'); 
 }
 
 // Siguraduhin na isa lang ang window.onload
@@ -192,7 +189,6 @@ function updateRequirements() {
         "ID Requirement": "Birth Certificate, 2x2 Picture, Proof of Residency"
     };
 
-    // Ito ang mahalaga: Kung walang napili (empty), ipakita ang instruction
     if (purpose === "") {
         reqText.innerText = "Select a purpose to see requirements.";
     } else {
@@ -353,7 +349,6 @@ window.addEventListener('click', function(event) {
 });
 
 function showScreen(screenId) {
-    // Itago lahat ng screens
     const screens = document.querySelectorAll('.screen');
     screens.forEach(s => {
         s.style.setProperty('display', 'none', 'important');
@@ -417,17 +412,15 @@ function setupNavigation() {
     });
 }
 
-// 2. Override sa openForm function para kapag nag-click ng cards sa Home, lilipat sa catalog
 const originalOpenForm = window.openForm;
 window.openForm = function(formType) {
-    // Una, inililipat natin ang active screen view papunta sa request screen catalog
+  
     showScreen('request-screen');
     
-    // Pangalawa, kung may orihinal na function para buksan ang popup modal, pinatatakbo natin
     if (typeof originalOpenForm === 'function') {
         originalOpenForm(formType);
     } else {
-        // Kung walang modal framework, ise-select nito ang dropdown field sa page niyo
+       
         const docSelect = document.getElementById('document-type');
         if (docSelect) {
             docSelect.value = formType;
@@ -436,7 +429,6 @@ window.openForm = function(formType) {
     }
 };
 
-// Patakbuhin ang configuration pagka-load ng layout instance
 document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     populateDOBDropdowns();
@@ -451,11 +443,10 @@ document.addEventListener('DOMContentLoaded', () => {
         fileInput.addEventListener('change', function() {
             // Kunin ang pangalan ng in-upload na file
             const fileName = this.files[0] ? this.files[0].name : "Click to upload or drag files here";
-            
-            // I-update ang text sa loob ng upload box
+         
             fileText.innerText = fileName;
             
-            // Opsyonal: Lagyan ng style para alam ng user na may na-upload na
+        
             fileText.style.color = "#2e7559";
             fileText.style.fontWeight = "bold";
         });
@@ -472,11 +463,10 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadBox.onclick = () => fileInput.click();
     }
 
-    // 2. Mag-listen kung may in-upload na file
     if (fileInput && fileText) {
         fileInput.addEventListener('change', function() {
             if (this.files && this.files.length > 0) {
-                // I-paste ang filename sa loob ng box
+   
                 fileText.innerText = this.files[0].name;
                 fileText.style.color = "#2e7559";
                 fileText.style.fontWeight = "bold";
@@ -486,20 +476,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function closeDetailsModal() {
-    // 1. Hanapin ang modal element mo (dapat tumugma sa id ng modal mo sa HTML)
-    // Kung hindi mo alam ang ID, i-check ang HTML mo para sa class na 'modal'
-    const modal = document.querySelector('.modal-content-container'); // O kung anong ID ng modal mo
+    
+    const modal = document.querySelector('.modal-content-container');
     
     if (modal) {
         modal.style.display = 'none';
     }
     
-    // 2. I-hide ang overlay kung meron (yung dark background)
     const overlay = document.querySelector('.modal-overlay');
     if (overlay) {
         overlay.style.display = 'none';
     }
-    
-    // 3. Optional: I-reload ang page kung ayaw talaga magsara (para sure ball)
-    // location.reload(); 
+
 }
