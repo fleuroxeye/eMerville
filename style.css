@@ -65,9 +65,9 @@ body, html {
 .portal-side {
     flex: 1;
     background:
-        radial-gradient(circle at 15% 15%, rgba(252, 209, 22, 0.25) 0%, transparent 50%),   /* Soft top-left yellow glow */
-        radial-gradient(circle at 85% 85%, rgba(46, 117, 89, 0.2) 0%, transparent 50%),    /* Soft bottom-right green glow */
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, transparent 100%),   /* Bright crisp center white */
+        radial-gradient(circle at 15% 15%, rgba(252, 209, 22, 0.25) 0%, transparent 50%),  
+        radial-gradient(circle at 85% 85%, rgba(46, 117, 89, 0.2) 0%, transparent 50%),   
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, transparent 100%),   
         linear-gradient(135deg, #fbfcfd 0%, #f1f3f5 100%);
     display: flex;
     align-items: center;
@@ -79,7 +79,7 @@ body, html {
 .portal-box {
     width: 100%;
     max-width: 440px;
-    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white card */
+    background-color: rgba(255, 255, 255, 0.95); 
     padding: 35px;
     border-radius: 16px;
     border: 1px solid rgba(230, 233, 240, 0.8);
@@ -952,7 +952,7 @@ main form {
 
 .footer-bottom {
     max-width: 1200px !important;
-    margin: 10px auto 0 auto !important; /* Binigyan ng space mula sa footer columns */
+    margin: 10px auto 0 auto !important; 
     padding: 24px 60px 0 60px !important;
     border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
     text-align: center !important;
@@ -980,7 +980,6 @@ main form {
     padding: 10px 20px !important;
 }
 
-/* Ibalik ang tatlong tabs sa gitna */
 .header-tabs {
     display: flex !important;
     flex-direction: row !important;
@@ -990,7 +989,6 @@ main form {
     transform: none !important;
 }
 
-/* Ibalik ang profile icon sa dulong kanan */
 .profile-dropdown, [class*="profile"] {
     margin-left: auto !important;
     display: flex !important;
@@ -1005,7 +1003,6 @@ main form {
     z-index: 1000 !important;
 }
 
-/* Lalabas lang ang menu kapag may class na .show */
 .profile-dropdown-menu.show {
     display: block !important;
 }
@@ -1015,12 +1012,11 @@ main form {
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    position: relative !important; /* Kailangan ito para maging anchor ng tabs */
+    position: relative !important;
     padding: 15px 30px !important;
     background: #ffffff !important;
 }
 
-/* SIKRETO: Gagawing absolute ang tatlong tabs para sumunod sa sentro ng screen, hindi sa katabing elements */
 .header-tabs {
     position: absolute !important;
     left: 50% !important;
@@ -1033,7 +1029,6 @@ main form {
     z-index: 5 !important;
 }
 
-/* Siguraduhing walang guguho sa logo at profile positions */
 .app-header > a, .app-header > .logo-container {
     position: relative !important;
     z-index: 2 !important;
@@ -1041,7 +1036,7 @@ main form {
 
 .profile-dropdown {
     position: relative !important;
-    z-index: 6 !important; /* Mas mataas para ma-click pa rin ang dropdown menu niyan */
+    z-index: 6 !important;
     margin-left: auto !important;
 }
 
@@ -1050,7 +1045,7 @@ main form {
     flex-direction: column !important;
     gap: 4px !important;
     padding-bottom: 10px !important;
-    margin-bottom: 15px; /* Kung may margin-bottom ka dito, gawin mong 15px lang */
+    margin-bottom: 15px;
     padding: 10px; 
 }
 
@@ -1058,21 +1053,17 @@ main form {
     transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-/* 2. GENERAL CARD HOVER MECHANICS */
 .card:hover {
     transform: translateY(-5px) !important;
     box-shadow: 0 10px 25px rgba(47, 125, 98, 0.12) !important;
     border-color: #2f7d62 !important;
 }
 
-/* 3. TRANSITION PARA SA LUMANG ARROW LINK (KUNG MERON PA) */
 .card:hover .btn-text {
     gap: 8px !important;
     transition: gap 0.2s ease;
 }
 
-/* 4. EXCLUSIVE HOVER EFFECT FOR DOCUMENT DASHBOARD BUTTONS ONLY */
-/* Babaguhin lang natin ang kulay ng button kung ang card ay nasa dashboard/request document area natin */
 #dashboard-screen .card:hover button {
     background: #1f5c47 !important;
     color: #ffffff !important;
@@ -1080,14 +1071,10 @@ main form {
     transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* 5. PRESERVE AND FIX TRACKING PAGE BUTTONS CONTRAST */
-/* Pinupuwersa natin na manatili ang orihinal nilang kulay kahit i-hover mo ang cursor sa buong tracking card */
-#detailsModal button,
 .tracking-card-container button {
     transition: background 0.2s ease, transform 0.1s ease !important;
 }
 
-/* Lilikhain lang natin ang hover effect kapag tinutukan mo mismo yung mga tracking buttons */
 .tracking-card-container button:hover {
     transform: scale(1.02);
     opacity: 0.9;
@@ -1104,11 +1091,9 @@ main form {
     align-items: center;
     gap: 8px;
     box-sizing: border-box;
-    /* Ang cubic-bezier na ito ang nagbibigay ng swabe at mabilisang "talbog" effect */
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-/* 2. Style & Hover para sa Puting Button (Primary) */
 .hero-btn-primary {
     background: #ffffff;
     color: #2f7d62;
@@ -1116,12 +1101,11 @@ main form {
 }
 
 .hero-btn-primary:hover {
-    transform: translateY(-3px) scale(1.02); /* Aangat at may kaunting talbog paitaas */
-    background: #f8fbf9 !important; /* Bahagyang sisindi/hihighlight ang kaputian */
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15) !important; /* Lalalim ang anino para sa depth perception */
+    transform: translateY(-3px) scale(1.02); 
+    background: #f8fbf9 !important; 
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15) !important; 
 }
 
-/* 3. Style & Hover para sa Transparent Button (Secondary) */
 .hero-btn-secondary {
     background: rgba(255, 255, 255, 0.12);
     color: #ffffff;
@@ -1130,13 +1114,11 @@ main form {
 }
 
 .hero-btn-secondary:hover {
-    transform: translateY(-3px) scale(1.02); /* Parehong talbog paitaas */
-    background: rgba(255, 255, 255, 0.22) !important; /* Mas liliwanag ang frosted tint para sa highlight */
-    border-color: rgba(255, 255, 255, 0.5) !important; /* Mas puputi ang border line */
+    transform: translateY(-3px) scale(1.02); 
+    background: rgba(255, 255, 255, 0.22) !important; 
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Active State: Kapag pinindot/kinlik ang buttons, may kaunting lubog */
 .hero-btn-primary:active, .hero-btn-secondary:active {
     transform: translateY(-1px) scale(0.98);
 }
@@ -1144,7 +1126,6 @@ main form {
 full-width-hero-container {
     width: 100vw !important;
     position: relative !important;
-    /* Kinakalkula ang saktong layo mula sa screen edge para hindi humilig sa kaliwa */
     left: 50% !important;
     right: 50% !important;
     margin-left: -50vw !important;
@@ -1165,13 +1146,11 @@ full-width-hero-container {
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/* Kapag itinapat ang mouse (Hover State Activation) */
 .socmed-window-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
-/* Dark translucent shading para lumutang ang puting teksto kahit maliwanag ang picture */
 .socmed-window-overlay {
     position: absolute;
     top: 0;
@@ -1184,7 +1163,7 @@ full-width-hero-container {
 }
 
 .socmed-window-card:hover .socmed-window-overlay {
-    background: rgba(0, 0, 0, 0.3); /* Nababawasan ang dilim pag nka-hover */
+    background: rgba(0, 0, 0, 0.3); 
 }
 
 .socmed-window-text {
@@ -1202,21 +1181,18 @@ full-width-hero-container {
     transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background-color 0.2s ease !important;
 }
 
-/* Request Button Hover (Lalaki nang bahagya + May malambot na anino) */
 .btn-hero-req:hover {
     transform: translateY(-3px) scale(1.03) !important;
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3) !important;
     background-color: #f8f9fa !important;
 }
 
-/* Track Button Hover (Magkakaroon ng translucent puting background + May talbog) */
 .btn-hero-track:hover {
     transform: translateY(-3px) scale(1.03) !important;
     background-color: rgba(255, 255, 255, 0.15) !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Active State (Liliit nang konti kapag pinindot/clinic) */
 .btn-hero-req:active, .btn-hero-track:active {
     transform: translateY(-1px) scale(0.98) !important;
 }
@@ -1226,10 +1202,9 @@ full-width-hero-container {
     margin-left: calc(-50vw + 50%) !important; 
     margin-right: calc(-50vw + 50%) !important;
     margin-top: -50px !important; 
-    padding-top: 100px !important;  /* Binabaan natin mula 60px para lumayo ang text sa gilid */
+    padding-top: 100px !important; 
 }
 
-/* Panatilihing nakasara ang gap ng container */
 main.container {
     margin-top: 0 !important;
     padding-top: 0 !important;
@@ -1237,7 +1212,7 @@ main.container {
 
 .back-btn {
     position: absolute;
-    left: -130px; /* Adjust mo ito kung masyadong malayo o malapit */
+    left: -130px; 
     top: 0;
     background: #ffffff;
     border: 2px solid #2e7559;
@@ -1255,11 +1230,10 @@ main.container {
 .back-btn:hover {
     background-color: #2e7559;
     color: #ffffff;
-    transform: translateX(-10px); /* Animation: tatalbog papuntang kaliwa */
+    transform: translateX(-10px); 
     box-shadow: 0 4px 12px rgba(46, 117, 89, 0.3);
 }
 
-/* Para sa mobile (kung masyadong maliit ang screen, ibalik natin sa taas) */
 @media (max-width: 850px) {
     .back-btn {
         position: static;
@@ -1275,7 +1249,6 @@ main.container {
     pointer-events: auto !important;
 }
 
-/* Siguraduhin na ang container ng card ay hindi nakaharang */
 .card {
     position: relative !important;
     z-index: 1 !important;
@@ -1283,4 +1256,38 @@ main.container {
 
 .screen { display: none !important; }
 .screen.active { display: block !important; }
+
+@media (max-width: 850px) {
+    .card-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    .footer-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 0 20px !important;
+    }
+    
+    .footer-col {
+        padding-right: 0 !important;
+        margin-bottom: 30px !important;
+        text-align: center !important;
+    }
+
+    .header-tabs {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    .social-media-block-section > div > div {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .socmed-window-card {
+        width: 100% !important;
+        max-width: 320px !important;
+    }
+}
 
