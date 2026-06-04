@@ -316,18 +316,37 @@ html, body {
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 8px;
     box-sizing: border-box;
+    align-items: start !important;
 }
 
 .card {
     background: white;
-    padding: 16px;
+    padding: 12x 16px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: 0.2s;
+    height: max-content !important;
 }
+
+.card p {
+        margin: 0 0 10px 0 !important; 
+        line-height: 1.3 !important;
+    }
+
+    .card > div > div:nth-of-type(2) {
+        margin-bottom: 10px !important; 
+        padding: 10px 15px !important; 
+    }
+
+    .card ul {
+        margin-bottom: 0 !important;
+    }
+    .card li {
+        margin-bottom: 2px !important;
+    }
 
 .card:hover {
     border-color: #2e7559;
@@ -671,20 +690,16 @@ main form {
 }
 
 .tab-btn {
-    background: none !important;
-    border: none !important;
-    padding: 10px 18px !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    color: #606266 !important;
-    cursor: pointer !important;
-    border-radius: 6px !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    border-bottom: 3px solid transparent !important; 
     transition: all 0.2s ease !important;
-}
+    }
 
 .tab-btn.active, .tab-btn:hover {
-    background-color: #e6f3ed !important;
-    color: #2e7559 !important;
+    background-color: transparent !important; /* Pinapatay yung dating green bg box */
+    color: #2e7559 !important; /* Mananatiling eMerville green ang text */
+    border-bottom: 3px solid #2e7559 !important; /* Ito yung Letterboxd-style underline */
 }
 
 /* Right Side Profile Container Alignment */
@@ -700,6 +715,7 @@ main form {
     gap: 8px !important;
     cursor: pointer !important;
     padding: 6px 12px !important;
+    padding-right: 0 !important;
     border-radius: 30px !important;
     user-select: none !important;
 }
@@ -837,7 +853,7 @@ main form {
     padding: 12px 14px !important;
     border: 1px solid #dcdfe6 !important;
     border-radius: 6px !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     font-family: inherit !important;
     box-sizing: border-box !important;
     background-color: #ffffff !important;
@@ -874,7 +890,7 @@ main form {
     background-color: #2e7559 !important; 
     color: #ffffff !important;
     width: 100% !important;
-    margin-top: 80px !important; 
+    margin-top: 0px !important; 
     padding: 30px 0 20px 0 !important; 
     font-family: inherit !important;
     box-sizing: border-box !important;
@@ -934,6 +950,7 @@ main form {
     list-style: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    margin-top: 42px !important;
 }
 
 .footer-links li {
@@ -1063,6 +1080,181 @@ main form {
     transform: scale(1.02);
     opacity: 0.9;
 }
+
+.universal-tracking-card {
+    background: #ffffff !important;
+    padding: 30px !important;
+    border-radius: 16px !important;
+    margin: 0 auto 25px auto !important;
+    max-width: 750px !important;
+    border: 1px solid #eef1f6 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    font-family: Arial, sans-serif !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease !important;
+}
+
+.universal-tracking-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 25px rgba(46, 117, 89, 0.08) !important;
+}
+
+/* Tracking ID Container Header */
+.track-id-header {
+    width: 100% !important;
+    display: block !important;
+}
+
+.tracking-id-badge {
+    background: #eaf5f0 !important;
+    color: #2e7559 !important;
+    padding: 6px 14px !important;
+    border-radius: 30px !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    display: inline-block !important;
+}
+
+/* Split Area: align-items: flex-start ang magpapantay sa tuktok ng dalawang column */
+.track-split-layout {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important; /* ITO ANG FIX: Pantay ang simula ng left at right content */
+    gap: 30px !important;
+}
+
+.track-details {
+    flex: 1 !important;
+}
+
+/* ETA styling na nasa loob na ng kolum */
+.estimated-pickup {
+    font-size: 13px !important;
+    color: #4a4a4a !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-bottom: 20px !important; /* Awang bago magsimula ang grid sa ilalim */
+}
+.estimated-pickup i { color: #2e7559 !important; }
+
+.track-meta-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.meta-item {
+    display: grid !important;
+    grid-template-columns: 140px 1fr !important;
+    font-size: 13px !important;
+    align-items: center !important;
+}
+
+.meta-label {
+    color: #909399 !important;
+    font-weight: 600 !important;
+}
+
+.meta-value {
+    color: #303133 !important;
+    font-weight: 600 !important;
+}
+
+/* Blending low-contrast box background configuration */
+.track-timeline-box {
+    background: #fafbfc !important;
+    border: 1px solid #f0f2f5 !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    width: 240px !important;
+    box-sizing: border-box !important;
+}
+
+.track-timeline-stepper {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.step-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    position: relative !important;
+    padding-bottom: 25px !important;
+}
+.step-item:last-child { padding-bottom: 0 !important; }
+
+.step-line {
+    position: absolute !important;
+    left: 11px !important;
+    top: 24px !important;
+    width: 2px !important;
+    height: calc(100% - 20px) !important;
+    background-color: #e4e7ed !important;
+    z-index: 1 !important;
+}
+.step-done .step-line { background-color: #2e7559 !important; }
+
+.step-circle {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    border: 2px solid #dcdfe6 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 11px !important;
+    z-index: 2 !important;
+}
+
+.step-label { font-size: 13px !important; }
+
+.step-done .step-circle { background: #2e7559 !important; border-color: #2e7559 !important; color: #ffffff !important; }
+.step-done .step-label { color: #2e7559 !important; font-weight: 700; }
+
+.step-active .step-circle { border-color: #f39c12 !important; color: #f39c12 !important; }
+.step-active .step-label { color: #f39c12 !important; font-weight: 700; }
+
+.step-pending .step-label { color: #909399 !important; }
+
+/* BOTTOM BUTTONS ROW */
+.track-buttons-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    border-top: 1px dashed #eef1f6 !important;
+    padding-top: 20px !important;
+}
+
+.track-top-btns { display: flex !important; gap: 12px !important; width: 100% !important; }
+
+.t-btn {
+    padding: 10px 20px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+}
+
+.t-view { flex: 1 !important; background: #f4f4f5 !important; color: #606266 !important; border: 1px solid #dcdfe6 !important; }
+.t-view:hover { background: #eef0f4 !important; }
+
+.t-dl { flex: 1 !important; background: #ffffff !important; color: #606266 !important; border: 1px solid #dcdfe6 !important; }
+.t-dl:hover { background: #f5f7fa !important; border-color: #c0c4cc !important; }
+
+.t-contact { width: 100% !important; background: #2e7559 !important; color: #ffffff !important; border: none !important; padding: 12px !important; }
+.t-contact:hover { background: #21543f !important; }
 
 .hero-btn-primary, .hero-btn-secondary {
     border: none;
@@ -1291,13 +1483,26 @@ main.container {
         padding: 25px 20px !important;
         width: 100% !important;
     }
+
+    .header-brand img.header-logo {
+        display: none !important;
+    }
+    .header-title {
+        font-size: 18px !important;
+    }
+
+    .profile-trigger i {
+        font-size: 20px !important;
+    }
+
     header.app-header {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 15px 20px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
     }
     div.header-brand {
         order: 1 !important;
@@ -1306,24 +1511,48 @@ main.container {
         margin: 0 !important;
     }
     nav.header-tabs {
-        position: static !important; /* ITO YUNG MAGIC FIX */
-        transform: none !important;  /* TANGGALIN YUNG CENTERING NG DESKTOP */
-        order: 3 !important;
-        width: 100% !important;
+        position: static !important; /* Ito yung magic word na nawala kanina! */
+        transform: none !important;
         display: flex !important;
         flex-direction: row !important;
-        justify-content: space-between !important;
-        margin-top: 15px !important;
-        gap: 4px !important;
+        width: 100% !important;
+        order: 3 !important; /* Piliting ibaba sa 3rd row */
+        margin-top: 10px !important;
+        gap: 0 !important;
     }
+
+    /* 2. Patayin ang original text nang hindi sinisira ang Letterboxd border */
     nav.header-tabs button {
         flex: 1 !important;
-        font-size: 11px !important;
-        padding: 8px 2px !important;
-        white-space: normal !important;
-        text-align: center !important;
-        line-height: 1.2 !important;
+        font-size: 0 !important; /* Tinatanggal ang haba ng lumang text */
+        color: transparent !important; /* Itinatago ang lumang text */
+        position: relative !important;
+        padding: 12px 0 !important;
     }
+
+    /* 3. I-setup ang pwesto ng bagong maiikling text sa gitna ng bawat button */
+    nav.header-tabs button::after {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        color: #606266 !important; /* Ibalik ang gray na text */
+    }
+
+    /* 4. Gawing Green ang text kapag pinindot (Letterboxd style matching) */
+    nav.header-tabs button.active::after,
+    nav.header-tabs button:hover::after {
+        color: #2e7559 !important;
+    }
+
+    /* 5. I-assign ang mga bagong maiikling pangalan */
+    nav.header-tabs button:nth-child(1)::after { content: "Home"; }
+    nav.header-tabs button:nth-child(2)::after { content: "Request"; }
+    nav.header-tabs button:nth-child(3)::after { content: "Track"; }
+    nav.header-tabs button:nth-child(4)::after { content: "Report"; }
+
     div.header-profile-container {
         order: 2 !important;
         width: auto !important;
@@ -1335,19 +1564,45 @@ main.container {
         display: none !important;
     }
 
-    /* 3. FOOTER FIX (Para bumaba lahat ng text at hindi mag-overlap) */
     .footer-container {
-        display: flex !important;
-        flex-direction: column !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 6px !important;
         padding: 0 20px !important;
-        gap: 30px !important;
     }
+
     .footer-col {
         width: 100% !important;
         padding-right: 0 !important;
     }
 
-    /* 4. FORM ROW FIX (Para sa sign up at dob dropdown) */
+    .footer-col.contact-info {
+    grid-column: span 2 !important; /* ITO ANG FIX: Piliting sakupin ang buong lapad para bumaba si About Us */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important; /* Ito naman ang magdidikit nang konti sa apat na detalye */
+    margin-bottom: 10px !important;
+}
+
+/* Siguraduhing walang counter-margin na humaharang sa pagdidikit nila */
+    .footer-col.contact-info > * {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
+    .footer-links h4 {
+        margin-bottom: 12px !important;
+    }
+
+    .footer-links ul {
+        line-height: 1.6 !important; 
+        margin-top: 15px !important;
+    }
+
+    .footer-links li {
+        margin-bottom: 8px !important;
+    }
+  
     .form-row, .dob-dropdown-row {
         flex-direction: column !important;
     }
@@ -1394,25 +1649,157 @@ main.container {
         gap: 10px;
 
     }
-    .card-grid {
-        grid-template-columns: 1fr; /* 1 column sa mobile pababa */
+    .split-layout {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        width: 100% !important;
+        padding: 0 !important; /* ZERO PADDING */
+        margin: 15px 0 0 0 !important; /* ZERO MARGIN SA KALIWA AT KANAN */
+        gap: 8px !important; 
+        box-sizing: border-box !important;
     }
-    .socmed-grid {
-        grid-template-columns: 1fr; /* 1 column sa mobile pababa */
+    .split-layout > div:nth-child(1),
+    .hero-badges-grid {
+        flex: 0 0 58% !important; 
+        width: 58% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        margin: 0 !important; 
+        padding: 0 !important;
+    }
+
+    .hero-badges-grid > div {
+        display: flex !important;
+        flex-direction: row !important; 
+        align-items: center !important;
+        padding: 10px 8px !important; 
+        gap: 6px !important;
+        margin: 0 !important;
+    }
+
+    .hero-badges-grid > div > div:nth-child(1) {
+        margin: 0 10px 0 0 !important; 
+        display: flex !important;
+        align-items: center!important;
+        justify-content: center !important;
+    }
+
+    /* Text Container - DITO ANG PAGBABAGO PARA PUMAGITNA */
+    .hero-badges-grid > div > div:nth-child(2) {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* GINAWANG CENTER */
+        justify-content: left !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important; /* GINAWANG CENTER */
+    }
+
+    /* Title (4, 1-2 Days, Fully Online) */
+    .hero-badges-grid h3 {
+        font-size: 15px !important;
+        margin: 0 0 2px 0 !important; 
+        padding: 0 !important;
+        white-space: nowrap !important; 
+        line-height: 1 !important;
     }
     
-    /* Para hindi sumikip ang padding sa phone */
+    /* Subtext (Available Documents, etc.) */
+    .hero-badges-grid > div > div:nth-child(2) > div {
+        font-size: 9px !important; 
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important; 
+        text-indent: 0 !important; 
+    }
+
+    .split-layout > div:nth-child(2) {
+        flex: 0 0 40% !important; 
+        width: 40% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; 
+        padding: 15px 12px !important; 
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        height: auto !important; 
+    }
+
+    .split-layout > div:nth-child(2) > div:first-child {
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        margin: 0 0 10px 0 !important;
+        text-align: left !important;
+        width: 100% !important;
+        line-height: 1.1 !important;
+    }
+
+    
+    .how-it-works-flex {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important; 
+        align-items: flex-start !important; 
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    
+    .how-it-works-flex > div {
+        font-size: 12px !important; 
+        font-weight: 600 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 6px !important; 
+        white-space: nowrap !important;
+        margin: 0 !important;
+    }
+
+    
+    .how-it-works-flex > div:nth-child(even) {
+        display: none !important;
+    }
+    
+    .socmed-grid {
+        grid-template-columns: 1fr; 
+    }
+    
+    
     .documents-marketplace-section {
         padding: 30px 20px !important; 
     }
-   
-    .hero-section > div:nth-child(2) {
-        flex-direction: column !important;
-        width: 100%;
+
+    .hero-section > div:nth-of-type(2),
+    .hero-buttons-container, 
+    .button-group {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 10px !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+
     }
+
+    .hero-section > div:first-child,
+    .hero-text-container {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
     .btn-hero-req, .btn-hero-track {
-        width: 100%;
-        justify-content: center;
+        flex: 1 !important; 
+        padding: 12px 5px !important;
+        font-size: 11px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
     }
 
     .how-it-works-flex div:nth-child(even) {
@@ -1433,23 +1820,28 @@ main.container {
         left: 0 !important;
         right: 0 !important;
         transform: none !important;
+        padding-top: 45px !important; 
+        min-height: auto !important;
+        gap: 5px !important;
     }
     #dashboard-screen h1,
     #dashboard-screen h2,
     .hero-section h1,
-    .hero-section h2 {
-        font-size: 24px !important; /* Mas tamang sukat para sa mobile */
+    .hero-section h2, 
+    .hero-section .title {
+        font-size: 22px !important; 
         line-height: 1.2 !important;
-        margin-bottom: 10px !important;
+        margin-bottom: 4px !important;
     }
 
-    /* Targetin ang maliit na subtitle (Official Portal...) */
     #dashboard-screen p,
-    .hero-section p {
-        font-size: 12px !important;
-        line-height: 1.4 !important;
-        margin-bottom: 20px !important;
-        padding: 0 15px !important; /* Konting space sa gilid para hindi sagad */
+    .hero-section p, 
+    .hero-section .subtitle {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        line-height: 1.3 !important;
+        margin-bottom: 4px !important;
+        padding: 0 10px !important; 
     }
 
     #login-screen img,
@@ -1459,7 +1851,6 @@ main.container {
         margin-bottom: 8px !important;
     }
 
-    /* 2. Sikipan ang espasyo ng title */
     #login-screen h1,
     .hero-side h1 {
         font-size: 22px !important;
@@ -1467,19 +1858,437 @@ main.container {
         margin-bottom: 4px !important;
     }
 
-    /* 3. Ilapit ang subtitle sa mismong form */
     #login-screen p,
     .hero-side p {
         font-size: 13px !important;
         margin-bottom: 15px !important;
     }
     
-    /* 4. Sikipan nang kaunti ang espasyo sa pagitan ng input fields */
     .form-group,
     #login-screen input {
         margin-bottom: 12px !important;
     }
 
+    .portal-side .brgy-logo-container img {
+        width: 60px !important;
+        height: 60px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .portal-side h2 {
+        font-size: 20px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .portal-side .portal-instruction {
+        font-size: 12px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .portal-side .form-group {
+        margin-bottom: 10px !important;
+    }
+
+    .portal-side .form-group label {
+        font-size: 11px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .portal-side .form-group input, 
+    .portal-side .form-group select {
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+        height: auto !important;
+    }
+
+    .portal-side .form-utilities {
+        margin-bottom: 15px !important;
+        font-size: 12px !important;
+        margin-top: -5px !important;
+    }
+
+    #auth-signup .form-row,
+    #auth-login .form-row {
+        gap: 5px !important;
+    }
+
+    #auth-signup .form-group,
+    #auth-login .form-group {
+        margin-bottom: 8px !important; 
+    }
+
+    #auth-signup label,
+    #auth-login label {
+        margin-bottom: 2px !important;
+        font-size: 11px !important;
+    }
+
     
+    #auth-signup input, 
+    #auth-signup select,
+    #auth-login input {
+        padding: 6px 10px !important;
+        height: 32px !important; 
+        font-size: 13px !important;
+        margin-bottom: 0 !important;
+    }
+
+   
+    #auth-signup .dob-dropdown-row {
+        gap: 5px !important;
+    }
+
+    #auth-signup .dob-dropdown-row {
+        display: flex !important;
+        flex-direction: row !important; 
+        gap: 6px !important; 
+    }
+
+    #auth-signup .dob-dropdown-row select {
+        flex: 1 !important; 
+        width: 33% !important; 
+        padding: 6px 4px !important; 
+        font-size: 11px !important;
+    }
+
+    #login-screen .portal-footer {
+        font-size: 9px !important;
+        -webkit-text-size-adjust: none !important; 
+        text-size-adjust: none !important;   
+        margin-top: 15px !important;
+        line-height: 1.3 !important;
+    }
+
+    #login-screen .switch-auth-text {
+        font-size: 11px !important;
+        margin-top: 12px !important;
+        margin-bottom: 5px !important;
+        -webkit-text-size-adjust: none !important;
+        text-size-adjust: none !important;
+    }
+
+    .mobile-header-group {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .mobile-header-group .brgy-logo-container {
+        margin-left: 5px !important;
+        margin-bottom: 0px !important;
+    }
+
+    .mobile-header-group .brgy-logo-container img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .mobile-header-group h2 {
+        margin: 0 !important;
+        font-size: 18px !important;
+        text-align: left !important; 
+        white-space: nowrap !important;
+        margin-left: -5px !important;
+    }
+
+    .portal-side .portal-instruction {
+        margin-top: 0px !important;
+        margin-bottom: 20px !important; 
+        font-size: 12px !important;
+    }
+
+    .portal-side .switch-auth-text {
+        margin-top: 8px !important;
+        margin-bottom: 2px !important;
+    }
+
+    #auth-signup .form-row {
+        gap: 0 !important; 
+    }
+
+    h2, .subtitle {
+        padding-left: 15px !important; 
+        padding-right: 15px !important;
+        margin-left: 0 !important; 
+        margin-right: 0 !important;
+        text-align: left !important;
+        box-sizing: border-box !important;
+    }
+
+    .card-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; 
+        gap: 15px !important; 
+        width: 100% !important;
+        padding: 0 15px !important; 
+        box-sizing: border-box !important;
+    }
+    .socmed-grid {
+        display: flex !important; 
+        flex-direction: row !important; 
+        flex-wrap: nowrap !important; 
+        overflow-x: auto !important; 
+        gap: 15px !important; 
+        padding: 0 15px 20px 15px !important; 
+        width: 100% !important;
+        box-sizing: border-box !important;
+        scroll-snap-type: x mandatory !important; 
+        scroll-padding-left: 15px !important; 
+        scrollbar-width: none !important; 
+    }
+
+    .socmed-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .socmed-grid .socmed-window-card {
+        flex: 0 0 85% !important; 
+        min-width: 85% !important; 
+        max-width: 85% !important; 
+        scroll-snap-align: start !important; 
+        margin: 0 !important;
+    }
+
+    .social-media-block-section {
+        padding-bottom: 0 !important; 
+        margin-bottom: 0 !important;
+    }
+
+    .socmed-grid {
+        padding-bottom: 10px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .app-footer, 
+    #portal-footer {
+        margin-top: 0 !important;
+        padding-top: 25px !important;
+    }
+
+    #request-screen h2, 
+    #tracking-screen h2, 
+    #blotter-screen h2 {
+        text-align: center !important;   
+        font-size: 18px !important;
+        margin-top: 10px !important;      
+        margin-bottom: 15px !important;   
+        color: #2e7559 !important;        
+        padding: 0 15px !important;
+    }
+
+    /* Siguraduhin na ang containers ay may parehong shadow at card design */
+    #requestForm, 
+    .tracking-card-container, 
+    .blotter-card-container {
+        background: #ffffff !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        border: 1px solid #e4e7ed !important;
+        margin: 0 10px 20px 10px !important;
+    }
+
+#request-screen h2 {
+    color: #303133 !important;
+    font-weight: 600 !important;
+    margin-top: 10px !important;  
+    margin-bottom: 15px !important; 
+    font-size: 20px !important;
+    
+}
+
+#request-screen label {
+        font-size: 12px !important; 
+        margin-bottom: 4px !important;
+        line-height: 1.2 !important;
+
+    }
+
+.unified-card, #requestForm, .blotter-card-container {
+        padding: 15px !important;
+        margin: 0 10px 20px 10px !important;
+        border-radius: 10px !important;
+}
+#upload-box {
+    padding: 15px !important;     
+    font-size: 12px !important;
+    margin-bottom: 20px !important;
+}
+
+#file-text {
+    font-size: 11px !important;
+    color: #606266 !important;
+}
+
+.form-group input, 
+    .util-form-group input, 
+    .util-form-group select, 
+    .util-form-group textarea {
+        padding: 8px 10px !important;
+        font-size: 13px !important;
 
 }
+
+.universal-tracking-card {
+        padding: 20px 15px !important;
+        width: 90% !important;
+    }
+
+    .track-split-layout {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    .meta-item {
+        grid-template-columns: 1fr !important;
+        gap: 3px !important;
+    }
+
+    .estimated-pickup {
+        margin-bottom: 15px !important;
+    }
+
+    .track-timeline-box {
+        width: 100% !important;
+        padding: 15px !important;
+    }
+
+    .tracking-id-badge, .estimated-pickup, .meta-item, .step-label, .t-btn {
+        font-size: 11px !important;
+    }
+
+    .track-top-btns { gap: 8px !important; }
+}
+
+    #blotter-screen {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* Gitna */
+        width: 100% !important;
+        padding-bottom: 40px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. THE CARD: Hindi sagad sa gilid, naka-center */
+    #blotter-screen form, 
+    .blotter-card-container {
+        width: 90% !important; /* May awang sa magkabilang gilid */
+        max-width: 400px !important;
+        margin: 0 auto !important; /* Gitna */
+        padding: 15px !important;
+        background: #ffffff !important;
+        border-radius: 12px !important;
+        border: 1px solid #e4e7ed !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 3. LABELS: Eksaktong 11px */
+    #blotter-screen label {
+        font-size: 12px !important; /* Pinaliit gaya ng utos mo */
+        font-weight: 600 !important;
+        margin-bottom: 5px !important;
+        color: #303133 !important;
+        display: block !important;
+        text-align: left !important;
+    }
+
+    /* 5. TEXTAREA: Mas maikli, 11px font */
+    #blotter-screen textarea {
+        width: 100% !important;
+        height: 60px !important; /* Di masyadong mataas */
+        min-height: 60px !important;
+        font-size: 12px !important; /* Pinaliit ang text sa loob */
+        padding: 6px 10px !important;
+        margin-bottom: 15px !important;
+        border: 1px solid #dcdfe6 !important;
+        border-radius: 6px !important;
+        box-sizing: border-box !important;
+        resize: none !important;
+    }
+
+    #blotter-screen button {
+        height: auto !important;
+        padding: 12px !important; /* Sakto lang ang nipis */
+        font-size: 11px !important; 
+        font-weight: bold !important;
+        line-height: normal !important; 
+        background-color: #2e7559 !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 6px !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    #blotter-screen select,
+    #blotter-screen select option {
+        font-size: 11px !important;
+        font-family: Arial, sans-serif !important;
+        color: #303133 !important;
+    }
+
+    #blotter-screen textarea {
+        font-size: 12px !important; 
+        padding: 10px !important;
+    }
+
+    /* 2. SAPILITANG 11px SA PLACEHOLDERS (Yung gray text) */
+    #blotter-screen input::placeholder, 
+    #blotter-screen textarea::placeholder {
+        font-size: 12px !important;
+        color: #909399 !important;
+    }
+
+
+.toggle-password-eye,
+    .toggle-password-eye-signup {
+        color: #909399 !important; 
+        opacity: 1 !important; 
+        transition: color 0.2s ease !important;
+    }
+
+    .toggle-password-eye:active,
+    .toggle-password-eye-signup:active {
+        color: #2e7559 !important; 
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .toggle-password-eye:hover,
+        .toggle-password-eye-signup:hover {
+            color: #2e7559 !important;
+        }
+
+        
+    }
+
+@media screen and (min-width: 769px) {
+        /* Ibalik sa gitna ang tabs container */
+        nav.header-tabs {
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: auto !important;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 20px !important;
+        }
+
+        /* Ibalik ang original na text size at visibility */
+        nav.header-tabs button {
+            font-size: 14px !important;
+            color: #606266 !important;
+            padding: 8px 16px !important;
+            visibility: visible !important; 
+            font-weight: 600 !important;
+        }
+
+        /* Patayin ang fake mobile text para hindi mag-overlap sa Desktop */
+        nav.header-tabs button::after {
+            display: none !important; 
+        }
+    }
