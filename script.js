@@ -208,59 +208,75 @@ function renderTrackingList() {
 
     currentRequests.forEach(req => {
         const newTrackingCard = document.createElement('div');
-        newTrackingCard.className = 'card';
-        
-        // Flex container na may column direction para malinis ang pagkakasalansan ng top details at bottom buttons
-        newTrackingCard.style.cssText = "background: #ffffff; padding: 25px; border-radius: 12px; margin-bottom: 25px; border-left: 6px solid rgba(46, 117, 89, 0.6); box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 20px;";
-        
+        newTrackingCard.className = 'universal-tracking-card';
+
         newTrackingCard.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; width: 100%;">
-                
-                <div style="flex: 1; min-width: 250px;">
-                    <h4 style="margin: 0 0 10px 0; color: #2e7559; font-size: 20px; font-weight: 700;">${req.document}</h4>
-                    <p style="margin: 0 0 15px 0; color: #606266; font-size: 14px;">Tracking ID: <span style="font-family: monospace; font-weight: bold; color: #303133;">${req.id}</span></p>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #484a4d;">
-                        <p style="margin: 0;"><span style="color: #909399;">Requested On:</span> ${req.requestedOn}</p>
-                        <p style="margin: 0;"><span style="color: #909399;">Purpose:</span> ${req.purpose}</p>
-                        <p style="margin: 8px 0 0 0; color: #2e7559; font-size: 14px;"><strong>Pickup Location: Barangay Hall</strong></p>
-                    </div>
-                </div>
+    <!-- ID Badge solo sa pinakataas ng card -->
+    <div class="track-id-header">
+        <span class="tracking-id-badge">ID: ${req.id || 'MRVL-6793'}</span>
+    </div>
 
-                <div style="min-width: 180px; display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px;">
-                    
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="width: 22px; height: 22px; border-radius: 50%; background: #2e7559; color: white; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: bold;">✓</div>
-                        <span style="font-size: 13px; font-weight: 600; color: #303133;">Submitted</span>
-                    </div>
-                    
-                    <div style="width: 2px; height: 18px; background: #2e7559; margin-left: 10px;"></div>
-                    
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="width: 22px; height: 22px; border-radius: 50%; background: #e6a23c; color: white; font-size: 16px; display: flex; align-items: center; justify-content: center; font-weight: bold; line-height: 1;">•</div>
-                        <span style="font-size: 13px; font-weight: 600; color: #e6a23c;">Under Review</span>
-                    </div>
-                    
-                    <div style="width: 2px; height: 18px; background: #e4e7ed; margin-left: 10px;"></div>
-                    
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #909399; background: white; display: flex; align-items: center; justify-content: center;"></div>
-                        <span style="font-size: 13px; font-weight: 500; color: #909399;">Ready for Pickup</span>
-                    </div>
-                    
-                </div>
-
+    <!-- MAIN CONTENT: Sabay magsisimula ang ETA at Status Box dito -->
+    <div class="track-split-layout">
+        
+        <!-- LEFT SIDE: ETA + Document Metadata -->
+        <div class="track-details">
+            <div class="estimated-pickup">
+                <i class="fa-solid fa-calendar-days"></i> Estimated Pickup: June 8, 2026
             </div>
-
-            <div style="border-top: 1px solid #f0f2f5; padding-top: 15px; display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
-                <button onclick="openDetailsModal('${req.id}')" style="background: #f4f4f5; color: #606266; border: 1px solid #dcdfe6; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s;">View Details</button>
-                <button onclick="alert('Downloading official receipt...')" style="background: #edf2fc; color: #409eff; border: 1px solid #dcdfe6; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s;">Download Receipt</button>
-                <button onclick="alert('Connecting via Barangay Helpdesk...')" style="background: #2e7559; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s;">Contact Barangay</button>
+            
+            <div class="track-meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">Requested On:</span>
+                    <span class="meta-value">${req.requestedOn || 'Jun 4, 2026'}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Purpose:</span>
+                    <span class="meta-value">${req.purpose || 'Scholarship Requirement'}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Pickup Location:</span>
+                    <span class="meta-value">Barangay Hall</span>
+                </div>
             </div>
-        `;
+        </div>
+
+        <!-- RIGHT SIDE: Status Section (Pantay na sa ETA) -->
+        <div class="track-timeline-box">
+            <div class="track-timeline-stepper">
+                <div class="step-item step-done">
+                    <div class="step-line"></div>
+                    <div class="step-circle"><i class="fa-solid fa-check"></i></div>
+                    <div class="step-label">Submitted</div>
+                </div>
+                <div class="step-item step-active">
+                    <div class="step-line"></div>
+                    <div class="step-circle"><i class="fa-solid fa-circle-dot"></i></div>
+                    <div class="step-label">Under Review</div>
+                </div>
+                <div class="step-item step-pending">
+                    <div class="step-circle"></div>
+                    <div class="step-label">Ready for Pickup</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM ROW: Actions Row -->
+    <div class="track-buttons-container">
+        <div class="track-top-btns">
+            <button class="t-btn t-view" onclick="console.log('View', '${req.id}')">View Details</button>
+            <button class="t-btn t-dl"><i class="fa-solid fa-download"></i> Download Receipt</button>
+        </div>
+        <button class="t-btn t-contact">Contact Barangay</button>
+    </div>
+`;
         trackingContainer.appendChild(newTrackingCard);
     });
 }
+
+
+
 
 window.addEventListener('DOMContentLoaded', renderTrackingList);
 function resetApp() {
@@ -362,7 +378,6 @@ function showScreen(screenId) {
         targetScreen.classList.remove('hidden');
     }
 
-    // Ayusin ang active tab
     const tabs = document.querySelectorAll('.tab-btn');
     tabs.forEach(t => t.classList.remove('active'));
     const activeTab = Array.from(tabs).find(t => {
@@ -371,10 +386,9 @@ function showScreen(screenId) {
     });
     if (activeTab) activeTab.classList.add('active');
 
-    // Footer visibility logic
     const footer = document.getElementById('portal-footer');
     if (footer) {
-        const visibleScreens = ['dashboard-screen', 'blotter-screen', 'track-screen', 'request-screen', 'form-screen'];
+        const visibleScreens = ['dashboard-screen', 'blotter-screen', 'tracking-screen', 'request-screen', 'form-screen'];
         footer.style.setProperty('display', visibleScreens.includes(screenId) ? 'block' : 'none', 'important');
     }
     
