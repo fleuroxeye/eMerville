@@ -926,6 +926,11 @@ main form {
     color: #ffffff !important;
 }
 
+.footer-col.contact-info h3,
+.footer-col.contact-info h2 {
+    margin-bottom: 12px !important; 
+}
+
 .contact-item {
     display: flex !important;
     align-items: flex-start !important; 
@@ -1117,11 +1122,10 @@ main form {
     display: inline-block !important;
 }
 
-/* Split Area: align-items: flex-start ang magpapantay sa tuktok ng dalawang column */
 .track-split-layout {
     display: flex !important;
     justify-content: space-between !important;
-    align-items: flex-start !important; /* ITO ANG FIX: Pantay ang simula ng left at right content */
+    align-items: flex-start !important;
     gap: 30px !important;
 }
 
@@ -1129,7 +1133,6 @@ main form {
     flex: 1 !important;
 }
 
-/* ETA styling na nasa loob na ng kolum */
 .estimated-pickup {
     font-size: 13px !important;
     color: #4a4a4a !important;
@@ -1137,7 +1140,7 @@ main form {
     display: flex !important;
     align-items: center !important;
     gap: 6px !important;
-    margin-bottom: 20px !important; /* Awang bago magsimula ang grid sa ilalim */
+    margin-bottom: 20px !important; 
 }
 .estimated-pickup i { color: #2e7559 !important; }
 
@@ -1163,8 +1166,6 @@ main form {
     color: #303133 !important;
     font-weight: 600 !important;
 }
-
-/* Blending low-contrast box background configuration */
 .track-timeline-box {
     background: #fafbfc !important;
     border: 1px solid #f0f2f5 !important;
@@ -1443,10 +1444,10 @@ main.container {
 
 @media (max-width: 992px) {
     .card-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns na lang sa tablet */
+        grid-template-columns: repeat(2, 1fr); 
     }
     .socmed-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns sa socmed para hindi maliit */
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
@@ -1468,12 +1469,12 @@ main.container {
     }
     
     .hero-side {
-        display: none !important; /* ITATAGO ANG PICTURE SA MOBILE LANG */
+        display: none !important; 
     }
     
     .portal-side {
-        width: 100% !important; /* SAKOP NG FORM ANG BUONG SCREEN SA MOBILE */
-        min-height: 100vh !important; /* Para sagad hanggang baba */
+        width: 100% !important; 
+        min-height: 100vh !important; 
         padding: 20px !important;
         display: flex !important;
         align-items: center !important;
@@ -1511,26 +1512,24 @@ main.container {
         margin: 0 !important;
     }
     nav.header-tabs {
-        position: static !important; /* Ito yung magic word na nawala kanina! */
+        position: static !important; 
         transform: none !important;
         display: flex !important;
         flex-direction: row !important;
         width: 100% !important;
-        order: 3 !important; /* Piliting ibaba sa 3rd row */
+        order: 3 !important; 
         margin-top: 10px !important;
         gap: 0 !important;
     }
 
-    /* 2. Patayin ang original text nang hindi sinisira ang Letterboxd border */
     nav.header-tabs button {
         flex: 1 !important;
-        font-size: 0 !important; /* Tinatanggal ang haba ng lumang text */
-        color: transparent !important; /* Itinatago ang lumang text */
+        font-size: 0 !important; 
+        color: transparent !important; 
         position: relative !important;
         padding: 12px 0 !important;
     }
 
-    /* 3. I-setup ang pwesto ng bagong maiikling text sa gitna ng bawat button */
     nav.header-tabs button::after {
         position: absolute !important;
         top: 50% !important;
@@ -1538,16 +1537,14 @@ main.container {
         transform: translate(-50%, -50%) !important;
         font-size: 11px !important;
         font-weight: 600 !important;
-        color: #606266 !important; /* Ibalik ang gray na text */
+        color: #606266 !important; 
     }
 
-    /* 4. Gawing Green ang text kapag pinindot (Letterboxd style matching) */
     nav.header-tabs button.active::after,
     nav.header-tabs button:hover::after {
         color: #2e7559 !important;
     }
 
-    /* 5. I-assign ang mga bagong maiikling pangalan */
     nav.header-tabs button:nth-child(1)::after { content: "Home"; }
     nav.header-tabs button:nth-child(2)::after { content: "Request"; }
     nav.header-tabs button:nth-child(3)::after { content: "Track"; }
@@ -1577,14 +1574,13 @@ main.container {
     }
 
     .footer-col.contact-info {
-    grid-column: span 2 !important; /* ITO ANG FIX: Piliting sakupin ang buong lapad para bumaba si About Us */
+    grid-column: span 2 !important; 
     display: flex !important;
     flex-direction: column !important;
-    gap: 4px !important; /* Ito naman ang magdidikit nang konti sa apat na detalye */
+    gap: 4px !important; 
     margin-bottom: 10px !important;
 }
 
-/* Siguraduhing walang counter-margin na humaharang sa pagdidikit nila */
     .footer-col.contact-info > * {
     margin-bottom: 0 !important;
     margin-top: 0 !important;
@@ -1610,7 +1606,6 @@ main.container {
         width: 100% !important;
     }
 
-    /* 5. GENERAL SPACING */
     .container,
     #blotter-screen,
     #tracking-screen {
@@ -1619,7 +1614,7 @@ main.container {
     }
 
     .hero-badges-grid {
-        grid-template-columns: 1fr; /* 1 column sa mobile pababa */
+        grid-template-columns: 1fr; 
         gap: 10px !important;
 
     }
@@ -1638,7 +1633,6 @@ main.container {
         margin-bottom: 2px !important;
     }
 
-    /* Paliitin ang subtext sa ilalim */
     .hero-badges-grid p {
         font-size: 11px !important; 
     }
@@ -1654,8 +1648,8 @@ main.container {
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         width: 100% !important;
-        padding: 0 !important; /* ZERO PADDING */
-        margin: 15px 0 0 0 !important; /* ZERO MARGIN SA KALIWA AT KANAN */
+        padding: 0 !important; 
+        margin: 15px 0 0 0 !important; 
         gap: 8px !important; 
         box-sizing: border-box !important;
     }
@@ -1686,18 +1680,16 @@ main.container {
         justify-content: center !important;
     }
 
-    /* Text Container - DITO ANG PAGBABAGO PARA PUMAGITNA */
     .hero-badges-grid > div > div:nth-child(2) {
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important; /* GINAWANG CENTER */
+        align-items: center !important; 
         justify-content: left !important;
         margin: 0 !important;
         padding: 0 !important;
-        text-align: center !important; /* GINAWANG CENTER */
+        text-align: center !important; 
     }
 
-    /* Title (4, 1-2 Days, Fully Online) */
     .hero-badges-grid h3 {
         font-size: 15px !important;
         margin: 0 0 2px 0 !important; 
@@ -1705,8 +1697,7 @@ main.container {
         white-space: nowrap !important; 
         line-height: 1 !important;
     }
-    
-    /* Subtext (Available Documents, etc.) */
+
     .hero-badges-grid > div > div:nth-child(2) > div {
         font-size: 9px !important; 
         margin: 0 !important;
@@ -2079,7 +2070,6 @@ main.container {
         padding: 0 15px !important;
     }
 
-    /* Siguraduhin na ang containers ay may parehong shadow at card design */
     #requestForm, 
     .tracking-card-container, 
     .blotter-card-container {
@@ -2166,18 +2156,17 @@ main.container {
     #blotter-screen {
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important; /* Gitna */
+        align-items: center !important;
         width: 100% !important;
         padding-bottom: 40px !important;
         box-sizing: border-box !important;
     }
 
-    /* 2. THE CARD: Hindi sagad sa gilid, naka-center */
     #blotter-screen form, 
     .blotter-card-container {
-        width: 90% !important; /* May awang sa magkabilang gilid */
+        width: 90% !important; 
         max-width: 400px !important;
-        margin: 0 auto !important; /* Gitna */
+        margin: 0 auto !important; 
         padding: 15px !important;
         background: #ffffff !important;
         border-radius: 12px !important;
@@ -2186,9 +2175,8 @@ main.container {
         box-sizing: border-box !important;
     }
 
-    /* 3. LABELS: Eksaktong 11px */
     #blotter-screen label {
-        font-size: 12px !important; /* Pinaliit gaya ng utos mo */
+        font-size: 12px !important;
         font-weight: 600 !important;
         margin-bottom: 5px !important;
         color: #303133 !important;
@@ -2196,12 +2184,11 @@ main.container {
         text-align: left !important;
     }
 
-    /* 5. TEXTAREA: Mas maikli, 11px font */
     #blotter-screen textarea {
         width: 100% !important;
-        height: 60px !important; /* Di masyadong mataas */
+        height: 60px !important; 
         min-height: 60px !important;
-        font-size: 12px !important; /* Pinaliit ang text sa loob */
+        font-size: 12px !important; 
         padding: 6px 10px !important;
         margin-bottom: 15px !important;
         border: 1px solid #dcdfe6 !important;
@@ -2212,7 +2199,7 @@ main.container {
 
     #blotter-screen button {
         height: auto !important;
-        padding: 12px !important; /* Sakto lang ang nipis */
+        padding: 12px !important;
         font-size: 11px !important; 
         font-weight: bold !important;
         line-height: normal !important; 
@@ -2236,7 +2223,6 @@ main.container {
         padding: 10px !important;
     }
 
-    /* 2. SAPILITANG 11px SA PLACEHOLDERS (Yung gray text) */
     #blotter-screen input::placeholder, 
     #blotter-screen textarea::placeholder {
         font-size: 12px !important;
@@ -2266,7 +2252,7 @@ main.container {
     }
 
 @media screen and (min-width: 769px) {
-        /* Ibalik sa gitna ang tabs container */
+
         nav.header-tabs {
             position: absolute !important;
             left: 50% !important;
@@ -2278,7 +2264,6 @@ main.container {
             gap: 20px !important;
         }
 
-        /* Ibalik ang original na text size at visibility */
         nav.header-tabs button {
             font-size: 14px !important;
             color: #606266 !important;
@@ -2287,7 +2272,6 @@ main.container {
             font-weight: 600 !important;
         }
 
-        /* Patayin ang fake mobile text para hindi mag-overlap sa Desktop */
         nav.header-tabs button::after {
             display: none !important; 
         }
