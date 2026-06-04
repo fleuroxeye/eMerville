@@ -318,7 +318,7 @@ html, body {
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
     box-sizing: border-box;
-    align-items: start !important;
+    align-items: stretch !important;
 }
 
 .card {
@@ -328,7 +328,9 @@ html, body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: 0.2s;
-    height: max-content !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .card p {
@@ -1431,7 +1433,9 @@ main.container {
     }
 }
 
-.card button {
+.card button,
+.card .btn-primary {
+    margin-top: auto !important;
     position: relative !important;
     z-index: 100 !important;
     pointer-events: auto !important;
