@@ -584,45 +584,75 @@
 
 <section id="detailsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999999; justify-content: center; align-items: center; padding: 20px;">
     
-    <div style="background: white; padding: 40px; border-radius: 12px; width: 100%; max-width: 500px; box-shadow: 0 5px 20px rgba(0,0,0,0.2);">
-        <h2 style="color: #2e7559; margin-top: 0; font-size: 24px;">Barangay Clearance</h2>
-        <p style="margin-bottom: 25px;">Tracking ID: <span id="modalTrackId" style="background: #f4f4f5; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-weight: bold;"></span></p>
-
-        <div style="display: flex; flex-direction: column; gap: 15px; color: #303133; font-size: 15px;">
-            <div style="display: flex; justify-content: space-between;">
-                <span style="color: #606266;">Status:</span>
-                <span id="modalStatus" style="font-weight: 600; color: #e6a23c;">Under Review (Step 2)</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span style="color: #606266;">Requested On:</span>
-                <span id="modalRequestedOn"></span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span style="color: #606266;">Estimated Availability:</span>
-                <span id="modalEta"></span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span style="color: #606266;">Purpose:</span>
-                <span id="modalPurpose"></span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span style="color: #606266;">Pickup Location:</span>
-                <span>Barangay Hall Desk 1</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span style="color: #606266;">Requirements Needed:</span>
-                <span style="background: #f4f4f5; padding: 2px 8px; border-radius: 4px; font-size: 13px;">Valid ID / Student ID</span>
-            </div>
+    <!-- Ginamit natin ang structure ng tracking card para uniform -->
+    <div style="background: white; padding: 30px; border-radius: 16px; width: 100%; max-width: 650px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); box-sizing: border-box; position: relative; overflow-y: auto; max-height: 90vh;">
+        
+        <!-- ID Badge Header -->
+        <div class="track-id-header" style="margin-bottom: 25px; text-align: left;">
+            <span class="tracking-id-badge" style="font-size: 14px; padding: 6px 16px;">ID: <span id="modalTrackId">MRVL-0000</span></span>
         </div>
 
-        <button type="button" 
-                onclick="this.parentElement.parentElement.style.display='none'; document.querySelector('.modal-overlay').style.display='none';" 
-                style="width: 100%; margin-top: 30px; padding: 12px; background: #2e7559; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;">
-            Close Details
-        </button>
+        <!-- Split Layout (Automatic nagiging Column sa Mobile based sa CSS mo) -->
+        <div class="track-split-layout">
+            
+            <!-- Left Side: Data Grid -->
+            <div class="track-details">
+                <div class="estimated-pickup">
+                    <i class="fa-solid fa-calendar-days"></i> Estimated Pickup: <span id="modalEta" style="margin-left: 5px;">June 8, 2026</span>
+                </div>
+                
+                <div class="track-meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">Requested On:</span>
+                        <span class="meta-value" id="modalRequestedOn">Jun 4, 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Purpose:</span>
+                        <span class="meta-value" id="modalPurpose">Scholarship</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Pickup Location:</span>
+                        <span class="meta-value">Barangay Hall Desk 1</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Requirements:</span>
+                        <span class="meta-value" style="background: #f8f9fa; padding: 4px 8px; border-radius: 4px; font-size: 12px; border: 1px solid #e4e7ed; display: inline-block;">Valid ID / Student ID</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Timeline Stepper -->
+            <div class="track-timeline-box">
+                <div class="track-timeline-stepper">
+                    <div class="step-item step-done">
+                        <div class="step-line"></div>
+                        <div class="step-circle"><i class="fa-solid fa-check"></i></div>
+                        <div class="step-label">Submitted</div>
+                    </div>
+                    <div class="step-item step-active">
+                        <div class="step-line"></div>
+                        <div class="step-circle"><i class="fa-solid fa-circle-dot"></i></div>
+                        <div class="step-label" id="modalStatus">Under Review</div>
+                    </div>
+                    <div class="step-item step-pending">
+                        <div class="step-circle"></div>
+                        <div class="step-label">Ready for Pickup</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Action -->
+        <div style="margin-top: 25px; border-top: 1px dashed #eef1f6; padding-top: 20px;">
+            <button type="button" 
+                    onclick="this.closest('#detailsModal').style.display='none';" 
+                    style="width: 100%; padding: 14px; background: #2e7559; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; transition: background 0.2s;">
+                Close Details
+            </button>
+        </div>
+
     </div>
-
-
 </section>
 
 </body>
