@@ -265,10 +265,15 @@ function renderTrackingList() {
     <!-- BOTTOM ROW: Actions Row -->
     <div class="track-buttons-container">
         <div class="track-top-btns">
-            <button class="t-btn t-view" onclick="console.log('View', '${req.id}')">View Details</button>
-            <button class="t-btn t-dl"><i class="fa-solid fa-download"></i> Download Receipt</button>
+            <!-- Pinalitan ang console.log ng openDetailsModal para bumukas yung ginawa mong popup -->
+            <button class="t-btn t-view" onclick="openDetailsModal('${req.id}')">View Details</button>
+            
+            <!-- Nilagyan ng alert popup -->
+            <button class="t-btn t-dl" onclick="alert('Receipt downloaded successfully!')"><i class="fa-solid fa-download"></i> Download Receipt</button>
         </div>
-        <button class="t-btn t-contact">Contact Barangay</button>
+        
+        <!-- Nilagyan ng alert popup -->
+        <button class="t-btn t-contact" onclick="alert('Barangay Merville Helpdesk:\\n\\nPlease call 123-456-7890 or email contact@emervilleportal.gov.ph for direct inquiries.')">Contact Barangay</button>
     </div>
 `;
         trackingContainer.appendChild(newTrackingCard);
